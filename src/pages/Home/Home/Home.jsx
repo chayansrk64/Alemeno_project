@@ -4,8 +4,8 @@ import Banner from '../Banner/Banner';
 const Home = () => {
     return (
         <div>
-            <p>home components will be render here</p>
             <Banner></Banner>
+            <p>home components will be render here</p>
         </div>
     );
 };

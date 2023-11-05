@@ -1,16 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import "./index.css";
 
-import router from './routes/router.jsx'
+import router from "./routes/router.jsx";
 
-import {
-  RouterProvider,
-} from "react-router-dom";
+import { RouterProvider } from "react-router-dom";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-     <RouterProvider router={router} />
-  </React.StrictMode>,
-)
+    <div className="max-w-screen-2xl mx-auto">
+      <RouterProvider router={router} />
+    </div>
+  </React.StrictMode>
+);
