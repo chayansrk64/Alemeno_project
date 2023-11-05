@@ -1,14 +1,32 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../providers/AuthProvider';
+import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
 
-    const {user} = useContext(AuthContext);
+    const {user, logOut} = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        logOut()
+        .then(() => {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'success',
+                title: 'Logout Successfull',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              navigate("/login")
+        })
+        .then(error => console.log(error));
+    }
 
     const navOptions = <>
-        <li><a>Home</a></li>
-        <li><a>Courses</a></li>
-        <li><a>Dashboard</a></li>
+        <li><a href='/'>Home</a></li>
+        <li><a href='/courses'>Courses</a></li>
+        <li><a href='/dashboard'>Dashboard</a></li>
         <li><a>{user?.displayName}</a></li>
          
     </>
@@ -36,8 +54,15 @@ const Header = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a href='/login' className="btn me-2">Login</a> 
-    <a href='/register' className="btn">Register</a>
+    {
+        user? <><button onClick={handleLogout} className='btn btn-gost '>Logout</button></> :
+         <>
+          <a href='/login' className="btn me-2">Login</a> 
+         <a href='/register' className="btn me-2">Register</a>
+         </>
+    }
+   
+    
   </div>
 </div>
         </div>

@@ -1,10 +1,15 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const Login = () => {
 
     const {signIn} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
 
     const handleLogin = (event) => {
         event.preventDefault();
@@ -25,6 +30,7 @@ const Login = () => {
                 showConfirmButton: false,
                 timer: 1500
               })
+              navigate(from, { replace: true });
         })
 
     };
