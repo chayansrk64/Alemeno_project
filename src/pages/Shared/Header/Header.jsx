@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AuthContext } from '../../../providers/AuthProvider';
 
 const Header = () => {
+
+    const {user} = useContext(AuthContext);
 
     const navOptions = <>
         <li><a>Home</a></li>
         <li><a>Courses</a></li>
         <li><a>Dashboard</a></li>
+        <li><a>{user?.displayName}</a></li>
+         
     </>
 
     return (
